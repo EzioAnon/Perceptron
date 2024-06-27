@@ -11,7 +11,7 @@ class Perceptron:
         self.bias = 0
 
     def treinamento(self, x, d):
-        dados = x.shape
+        dados = x.shape[1]
         self.pesos = np.zeros(dados)
 
         for _ in range(self.epocas):
@@ -21,19 +21,19 @@ class Perceptron:
                 y = degrau(linear_output)
                 erro  = d[idx] - y
                 update = self.taxa_aprendizado * erro
-                self.peso += update * x_i
-                self.bias = update
+                self.pesos += update * x_i
+                self.bias += update
                 if update != 0:
                     epoca += 1
-            
-            
-            print(f'Época {epoca}:')
-            print('Pesos: ',self.pesos)
-            print('Bias: ',self.bias)
+                    print(f'Época {epoca}')
+                    print('Pesos: ',self.pesos)
+                    print('Bias: ',self.bias)
 
+            
+            
             if erro == 0:
-                print("Convergiu em: {epoca} épocas ")
+                print(f"Convergiu em: {epoca} épocas ")
                 break
     def previsao(self,x):
         linear_output = np.dot(x,self.pesos) + self.bias
-        return degrau
+        return degrau(linear_output)
