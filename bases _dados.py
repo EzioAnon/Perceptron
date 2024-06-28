@@ -1,22 +1,25 @@
-from sklearn.datasets import make_classification
-import matplotlib.pyplot as plt
 import numpy as np
-import Perceptron # Importando meu código
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from Perceptron import Perceptron #Importando meu código
+np.random.seed(0)
+X = np.random.rand(1000, 5) * 10
 
-X, y = make_classification(n_samples=1000, n_features=2, n_informative=2, n_redundant=0, n_clusters_per_class=1, n_classes=2, class_sep=3.0, random_state=42)
+y = np.array([1 if x[0] < 5 else -1 for x in X])
 
 
-colors = ['red', 'green', 'blue']
-plt.figure(figsize=(10, 8))
-for class_value in np.unique(y):
-    plt.scatter(X[y == class_value][:, 0], X[y == class_value][:, 1], label=f'Class {class_value}', color=colors[class_value])
-plt.title('Dados Sintéticos Linearmente Separáveis com Multiclasses')
-plt.xlabel('Feature 1')
-plt.ylabel('Feature 2')
-plt.legend()
-plt.show()
+# plt.figure(figsize=(8, 6))
+# plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1], color='red', label='Classe 1')
+# plt.scatter(X[y == -1][:, 0], X[y == -1][:, 1], color='blue', label='Classe -1')
+# plt.title('Dados Sintéticos Linearmente Separáveis com 1000 Linhas e 5 Colunas')
+# plt.xlabel('Feature 1')
+# plt.ylabel('Feature 2')
+# plt.legend()
+# plt.show()
 
-X_train,y_train = 0 # Só para para de indicar erro
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 perceptron = Perceptron()
 perceptron.treinamento(X_train,y_train)

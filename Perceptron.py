@@ -1,7 +1,7 @@
 import numpy as np
 
 def degrau(y):
-    return +1 if y >= 1 else -1
+    return +1 if y >= 0 else -1
 
 class Perceptron:
     def __init__(self,):
