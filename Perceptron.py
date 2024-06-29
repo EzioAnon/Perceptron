@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 def degrau(y):
     return +1 if y >= 0 else -1
@@ -9,6 +10,7 @@ class Perceptron:
         self.epocas = 1000
         self.pesos = None
         self.bias = 0
+        self.historico = pd.DataFrame(columns=['Época', 'Peso 1', 'Peso 2', 'Peso 3', 'Bias', 'Erro'])
 
     def treinamento(self, x, d):
         dados = x.shape[1]
@@ -23,11 +25,20 @@ class Perceptron:
                 update = self.taxa_aprendizado * erro
                 self.pesos += update * x_i
                 self.bias += update
+                nova_linha = {
+                    'Época': epoca,
+                    'Peso 1': self.pesos[0],
+                    'Peso 2': self.pesos[1],
+                    'Peso 3': self.pesos[2],
+                    'Bias': self.bias,
+                    'Erro': erro
+                }
+
                 if update != 0:
                     epoca += 1
-                    print(f'Época {epoca}')
-                    print('Pesos: ',self.pesos)
-                    print('Bias: ',self.bias)
+                    # print(f'Época {epoca}')
+                    # print('Pesos: ',self.pesos)
+                    # print('Bias: ',self.bias)
 
             
             

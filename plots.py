@@ -4,9 +4,12 @@ from pandas.plotting import table
 
 # Exemplo de dados
 data = {
-    'Nome': ['Alice', 'Bob', 'Charlie'],
-    'Idade': [25, 30, 35],
-    'Cidade': ['São Paulo', 'Rio de Janeiro', 'Curitiba']
+    'Época': [],
+    'Peso 1:': [],
+    'Peso 2:': [],
+    'Peso 3:': [],
+    'Peso Bias:': [],
+    'Erro': []
 }
 
 # Criando um DataFrame
