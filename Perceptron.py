@@ -33,18 +33,19 @@ class Perceptron:
                     'Bias': self.bias,
                     'Erro': erro
                 }
-
+                
                 if update != 0:
                     epoca += 1
-                    # print(f'Época {epoca}')
-                    # print('Pesos: ',self.pesos)
-                    # print('Bias: ',self.bias)
+                    print(f'Época {epoca}')
+                    print('Pesos: ',self.pesos)
+                    print('Bias: ',self.bias)
 
             
             
             if erro == 0:
                 print(f"Convergiu em: {epoca} épocas ")
                 break
+    
     def previsao(self,x):
         linear_output = np.dot(x,self.pesos) + self.bias
         return degrau(linear_output)
