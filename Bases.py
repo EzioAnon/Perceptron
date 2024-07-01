@@ -1,11 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
 from Perceptron import Perceptron #Importando meu código
 
 
-def separacao_dados(X,y):
- return train_test_split(X, y, test_size=0.2, random_state=42)
+
 
 
 
@@ -25,11 +23,5 @@ class Base1():
 class Base2():
  print()
 
-perceptron = Perceptron()
 
-def treianamento(X_train,y_train):
- perceptron.treinamento(X_train,y_train)
 
-def previsao(X, X_teste):
- y_previsão = [perceptron.previsao(X_test) for X_test in X]
- return y_previsão
