@@ -2,7 +2,9 @@ import numpy as np
 import pandas as pd
 
 def degrau(y):
-    return +1 if y >= 0 else -1
+    if y > 0: return +1
+    elif y == 0: return 0
+    else: return -1
 
 class Perceptron:
     def __init__(self,):
@@ -10,14 +12,14 @@ class Perceptron:
         self.epocas = 1000
         self.pesos = None
         self.bias = 0
-        self.historico = pd.DataFrame(columns=['Época', 'Peso 1', 'Peso 2', 'Peso 3', 'Bias', 'Erro'])
+        
 
     def treinamento(self, x, d):
         dados = x.shape[1]
         self.pesos = np.zeros(dados)
 
-        for _ in range(self.epocas):
-            epoca = 0
+        for epoca in range(self.epocas):
+            erro_total = 0
             for idx, x_i in enumerate(x):
                 linear_output = np.dot(x_i,self.pesos) + self.bias
                 y = degrau(linear_output)
@@ -25,25 +27,19 @@ class Perceptron:
                 update = self.taxa_aprendizado * erro
                 self.pesos += update * x_i
                 self.bias += update
-                nova_linha = {
-                    'Época': epoca,
-                    'Peso 1': self.pesos[0],
-                    'Peso 2': self.pesos[1],
-                    'Peso 3': self.pesos[2],
-                    'Bias': self.bias,
-                    'Erro': erro
-                }
+                erro_total += abs(erro) 
+                 
                 
-                if update != 0:
-                    epoca += 1
-                    print(f'Época {epoca}')
-                    print('Pesos: ',self.pesos)
-                    print('Bias: ',self.bias)
+                
+                    
+            print(f'Época {epoca + 1}')
+            print('Pesos: ',self.pesos)
+            print('Bias: ',self.bias)
 
             
             
-            if erro == 0:
-                print(f"Convergiu em: {epoca} épocas ")
+            if erro_total == 0:
+                print(f"Convergiu em: {epoca + 1} épocas ")
                 break
     
     def previsao(self,x):
