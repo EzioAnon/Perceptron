@@ -11,7 +11,7 @@ def separacao_dados(X,y):
 
 class Base1():
  np.random.seed(0)
- X = np.random.rand(1000, 2) * 10
+ X = np.random.rand(1000, 4) * 10
  y = np.array([1 if x[0] < 5 else -1 for x in X])
 
 
