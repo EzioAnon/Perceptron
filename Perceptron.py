@@ -2,9 +2,7 @@ import numpy as np
 import pandas as pd
 
 def degrau(y):
-    if y > 0: return +1
-    elif y == 0: return 0
-    else: return -1
+    return np.where(y >= 1, 1, -1)
 
 class Perceptron:
     def __init__(self,):
@@ -12,6 +10,7 @@ class Perceptron:
         self.epocas = 1000
         self.pesos = None
         self.bias = 0
+        self.epoca_convergencia = []
         
 
     def treinamento(self, x, d):
@@ -32,15 +31,19 @@ class Perceptron:
                 
                 
                     
-            print(f'Época {epoca + 1}')
-            print('Pesos: ',self.pesos)
-            print('Bias: ',self.bias)
+            # print(f'Época {epoca + 1}')
+            # print('Pesos: ',self.pesos)
+            # print('Bias: ',self.bias)
 
             
             
             if erro_total == 0:
+                self.epoca_convergencia.append(epoca + 1)
                 print(f"Convergiu em: {epoca + 1} épocas ")
                 break
+        if erro_total !=0:
+            self.epoca_convergencia.append(epoca + 1)
+            print(f"Convergiu em: {epoca + 1 } épocas ")
     
     def previsao(self,x):
         linear_output = np.dot(x,self.pesos) + self.bias
