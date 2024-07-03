@@ -8,7 +8,7 @@ class Validacao_cruzada():
         self.y_pastas = None
         self.perceptron = Perceptron()
         self.acuracias = []
-    
+        
     def divisao(self, X, y):
         classes = np.unique(y)
         

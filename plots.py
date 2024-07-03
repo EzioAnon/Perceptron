@@ -1,31 +1,36 @@
-import pandas as pd
 import matplotlib.pyplot as plt
-from pandas.plotting import table
-import Bases
-from Perceptron import Perceptron
-percptron = Perceptron()
-base_1 = Bases.Base1()
-base_2 = Bases.Base2()
-
-X_train_1,X_teste_1, y_train_1, y_teste_1 = Bases.separacao_dados(base_1.X,base_1.y)
-Bases.treianamento(X_train_1,y_train_1)
+import numpy as np
 
 
-df = pd.DataFrame(percptron.historico)
+def plot_bases(X,y):
+ plt.figure(figsize=(8, 6))
+ 
+ for label in np.unique(y):
+    plt.scatter(X[y == label][:, 0], X[y == label][:, 1], label=f'Classe {label}')
+ 
+ plt.xlabel('Feature 1')
+ plt.ylabel('Feature 2')
+ plt.legend()
+ plt.show()
 
 
-fig, ax = plt.subplots(figsize=(8, 3))
+
+#Plot estilo tabela, mas é dificl de armazenar os dados da melhor pasta
+# df = pd.DataFrame(percptron.historico)
 
 
-ax.axis('off')
+# fig, ax = plt.subplots(figsize=(8, 3))
 
 
-tbl = table(ax, df, loc='center', colWidths=[0.2, 0.2, 0.2,0.2, 0.2, 0.2])
+# ax.axis('off')
 
 
-tbl.auto_set_font_size(False)
-tbl.set_fontsize(10)
-tbl.scale(1.2, 1.2)
+# tbl = table(ax, df, loc='center', colWidths=[0.2, 0.2, 0.2,0.2, 0.2, 0.2])
 
 
-plt.show()
+# tbl.auto_set_font_size(False)
+# tbl.set_fontsize(10)
+# tbl.scale(1.2, 1.2)
+
+
+# plt.show()
