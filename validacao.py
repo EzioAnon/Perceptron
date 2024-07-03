@@ -8,7 +8,8 @@ class Validacao_cruzada():
         self.y_pastas = None
         self.perceptron = Perceptron()
         self.acuracias = []
-        
+        self.melhor_peso = None
+        self.melhor_bias = None
     def divisao(self, X, y):
         classes = np.unique(y)
         
@@ -68,9 +69,13 @@ class Validacao_cruzada():
                 melhor_acuracia = acuracia
                 melhor_pasta = pasta_idx
                 melhor_epoca = self.perceptron.epoca_convergencia[melhor_pasta]
+                self.melhor_peso = self.perceptron.pesos.copy()
+                self.melhor_bias = self.perceptron.bias
             elif acuracia == melhor_acuracia:
                 if self.perceptron.epoca_convergencia[pasta_idx] < melhor_epoca:
                     melhor_pasta = pasta_idx
                     melhor_epoca = self.perceptron.epoca_convergencia[pasta_idx]
+                    self.melhor_peso = self.perceptron.pesos.copy()
+                    self.melhor_bias = self.perceptron.bias
 
         print(f'Melhor Pasta: {melhor_pasta + 1} com Acuracia de: {melhor_acuracia} em: {melhor_epoca} epocas')
