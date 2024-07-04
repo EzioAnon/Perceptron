@@ -15,8 +15,7 @@ def plot_bases(X,y, retas=None):
      y_vals = a * x_vals + b
      plt.plot(x_vals,y_vals, label=f'Reta{i + 1}', linestyle='--')
 
- plt.xlabel('Feature 1')
- plt.ylabel('Feature 2')
+ 
  plt.legend()
  plt.show()
 
@@ -37,22 +36,4 @@ def reta_2d(melhor_peso, melhor_bias , indices = [0,1]):
 
 
 
-#Plot estilo tabela, mas é dificl de armazenar os dados da melhor pasta
-# df = pd.DataFrame(percptron.historico)
 
-
-# fig, ax = plt.subplots(figsize=(8, 3))
-
-
-# ax.axis('off')
-
-
-# tbl = table(ax, df, loc='center', colWidths=[0.2, 0.2, 0.2,0.2, 0.2, 0.2])
-
-
-# tbl.auto_set_font_size(False)
-# tbl.set_fontsize(10)
-# tbl.scale(1.2, 1.2)
-
-
-# plt.show()
